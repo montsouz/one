@@ -1,0 +1,61 @@
+service: employees-rest-api
+
+frameworkVersion: ">=1.1.0 <=2.23.0"
+
+provider:
+  name: aws
+  region: sa-east-1
+  runtime: nodejs12.x
+  environment:
+    DYNAMODB_TABLE: ${ssm:/database/employees-table/id~true}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: ${ssm:/database/employees-table/table_arn~true}
+
+functions:
+  create:
+    handler: employees/create.create
+    events:
+      - http:
+          path: employees
+          method: post
+          cors: true
+
+  list:
+    handler: employees/list.list
+    events:
+      - http:
+          path: employees
+          method: get
+          cors: true
+
+  get:
+    handler: employees/get.get
+    events:
+      - http:
+          path: employees/{id}
+          method: get
+          cors: true
+
+  update:
+    handler: employees/update.update
+    events:
+      - http:
+          path: employees/{id}
+          method: put
+          cors: true
+
+  delete:
+    handler: employees/delete.delete
+    events:
+      - http:
+          path: employees/{id}
+          method: delete
+          cors: true
