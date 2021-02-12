@@ -4,18 +4,13 @@ A rest API built with Node, DynamoDB, Serverless, and Terraform.
 
 Imagine the following case:
 
-```
-Provision an infrastructure on AWS, in which there is a lambda that is capable of recording data on a company's employees in a relational or non-relational database.
-```
+> Provision an infrastructure on AWS, in which there is a lambda that is capable of recording data on a company's employees in a relational or non-relational database.
 
 ## Why using Terraform and Serverless?
 
 According to Sebastian Borza, a Software Engineer at Serverless.
 
-```
-Terraform is best suited for managing more persistent shared infrastructure, while Serverless is a good fit to manage the application-specific infrastructure.
-
-```
+> Terraform is best suited for managing more persistent shared infrastructure, while Serverless is a good fit to manage the application-specific infrastructure.
 
 In this case, I considered the DyanamoDB database as a persistent infrastructure while Serverless manages the Lambda Functions
 
