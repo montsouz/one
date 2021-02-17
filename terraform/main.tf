@@ -2,6 +2,8 @@ provider "aws" {
   region = "sa-east-1"
 }
 
+provider "archive" {}
+
 
 resource "aws_dynamodb_table" "employee_dynamodb_table" {
   name           = "employees-table"
@@ -13,11 +15,6 @@ resource "aws_dynamodb_table" "employee_dynamodb_table" {
   attribute {
     name = "Id"
     type = "S"
-  }
-
-  ttl {
-    attribute_name = "TimeToExist"
-    enabled        = false
   }
 
   tags = {
@@ -40,4 +37,12 @@ resource "aws_ssm_parameter" "table_id" {
   description = "Get the table id"
   type        = "String"
   value       = aws_dynamodb_table.employee_dynamodb_table.id
+}
+
+
+//Creating one endpoint with terraform for comparisson
+
+module "serverless-api" {
+  source = "./serverless-api"
+  name   = "serverless-terraform-api"
 }
