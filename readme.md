@@ -94,3 +94,7 @@ And that's it!
 - PUT - /employees/{id}
 
 - DELETE - /employees/{id}
+
+## Extra - Creating a lambda using only
+
+You can check the code inside terraform/serverless-api
