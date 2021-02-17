@@ -95,6 +95,6 @@ And that's it!
 
 - DELETE - /employees/{id}
 
-## Extra - Creating a lambda using only
+## Extra - Creating a lambda using only Terraform
 
 You can check the code inside terraform/serverless-api
